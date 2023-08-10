@@ -39,3 +39,20 @@ class FullyConnectedLayer(BaseLayer):
         # B = B - learning_rate * dE/dB
         self.bias -= learning_rate * bias_error
         return input_error
+
+
+class ActivationLayer(BaseLayer):
+    def __init__(self, activation_func, activation_func_derivative):
+        super.__init__()
+        self.activation_func = activation_func
+        self.activation_func_derivative = activation_func_derivative
+
+    def forward_propagate(self, input_data):
+        self.input = input_data
+        # Y = f(X)
+        self.output = self.activation_func(self.input)
+        return self.output
+
+    def backward_propagate(self, output_error, learning_rate):
+        # input_error = dE/dY * f'(X)
+        return self.activation_func_derivative(self.input) * output_error
