@@ -15,7 +15,6 @@ class BaseLayer:
 
 class FullyConnectedLayer(BaseLayer):
     def __init__(self, input_size, output_size):
-        super().__init__()
         #  create weights and bias matrices, initially with random values
         self.weights = np.random.rand(input_size, output_size) - 0.5
         self.bias = np.random.rand(1, output_size) - 0.5
@@ -43,7 +42,6 @@ class FullyConnectedLayer(BaseLayer):
 
 class ActivationLayer(BaseLayer):
     def __init__(self, activation_func, activation_func_derivative):
-        super.__init__()
         self.activation_func = activation_func
         self.activation_func_derivative = activation_func_derivative
 
