@@ -8,6 +8,7 @@ from keras.utils import to_categorical
 
 (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
 
+
 # reshape into two dimensional array
 x_train = x_train.reshape(x_train.shape[0], 1, 28 * 28)
 # convert number to different type
@@ -31,7 +32,9 @@ test_network.add_layer(layers.ActivationLayer(activation_functions.tanh, activat
 test_network.add_layer(layers.FullyConnectedLayer(50, 10))
 test_network.add_layer(layers.ActivationLayer(activation_functions.tanh, activation_functions.tanh_derivative))
 
-test_network.fit(x_train[:1000], y_train[:1000], epochs=20, learning_rate=0.1)
+# train network
+test_network.fit(x_train[:5000], y_train[:5000], epochs=20, learning_rate=0.1)
 
-print(test_network.predict(x_test[1]))
-print(y_test[1])
+# test
+print(test_network.test(x_test[:1000], y_test[:1000]))
+

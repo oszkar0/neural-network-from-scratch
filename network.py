@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class NeuralNetwork:
     def __init__(self, loss_func_derivative):
         self.loss_func_derivative = loss_func_derivative
@@ -29,3 +32,12 @@ class NeuralNetwork:
             output = layer.forward_propagate(output)
 
         return output
+
+    def test(self, x_test, y_test):
+        successes = 0
+
+        for i in range(len(x_test)):
+            if np.argmax(self.predict(x_test[i])) == np.argmax(y_test[i]):
+                successes += 1
+
+        return successes / len(x_test)
